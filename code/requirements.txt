@@ -3,7 +3,7 @@ beautifulsoup4~=4.14.3
 chainlit~=2.9.6
 chromadb~=1.0.20
 fastapi~=0.116.2
-faster-whisper~=1.0.0
+faster-whisper
 feedparser~=6.0.12
 langchain~=0.3.27
 langchain_chroma~=0.2.5
@@ -13,9 +13,10 @@ langchain_ollama~=0.3.3
 langchain_openai~=0.3.32
 markdown~=3.10.2
 mdformat~=1.0.0
-torch>=2.0.0
-soundfile~=0.12.1
+omegaconf
 plotly~=6.6.0
+soundfile~=0.12.1
+torch>=2.0.0
 Requests~=2.33.0
 tqdm~=4.67.3
 unstructured~=0.18.32

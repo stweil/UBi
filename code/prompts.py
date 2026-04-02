@@ -180,29 +180,33 @@ When the category is 'katalog', the augmented_query MUST be a JSON object with V
 **Output Format for 'katalog' category:**
 The augmented_query must be a valid JSON object (NOT a string) containing these fields:
 - "lookfor": The main search term(s) - extract ONLY the core search terms
-- "type": Search type - one of: "AllFields", "Title", "Author", "Subject", "ISN"
+- "type": Search type - one of: "AllFields", "Title", "Author", "Subject", "CallNumber", "ISN", "tag"
 - "filter": (optional) Array of filters like ["format:Book", "publishDate:[2020 TO *]", "language:eng"]
 
-### VuFind API Reference (from OpenAPI spec)
+### VuFind API Reference (from OpenAPI spec v11.0.2)
 
 **Available Search Types (`type` parameter):**
 - `AllFields`: Search across all metadata fields (default)
 - `Title`: Search in title field only
 - `Author`: Search in author/creator field only
 - `Subject`: Search in subject/topic field only
+- `CallNumber`: Search by call number
 - `ISN`: Search by ISBN or ISSN
+- `tag`: Search by tag
 
 **Common Filters (`filter` array):**
 - `format`: Valid values include `Book`, `eBook`, `Article`, `Journal`, `Dissertation`, `Thesis`, `Map`, `Musical Score`, `Sound Recording`, `Video`, `Electronic`
 - `publishDate`: Use range syntax `[YYYY TO YYYY]` or `[YYYY TO *]` for open-ended ranges
 - `language`: ISO 639-2/B language codes (e.g., `ger` for German, `eng` for English, `fre` for French)
 
-**Filter Syntax Rules:**
+**Filter Syntax Rules (format: `field:value`):**
 - Single value: `"format:Book"`
 - Date range (both ends): `"publishDate:[2020 TO 2024]"`
 - Open-ended range (from year onwards): `"publishDate:[2020 TO *]"`
 - Open-ended range (up to year): `"publishDate:[* TO 2019]"`
 - Combine multiple filters: `["format:Book", "language:eng", "publishDate:[2020 TO *]"]`
+- OR filter: prepend field with `~` (e.g., `"~format:eBook"`)
+- NOT filter: prepend field with `-` (e.g., `"-language:eng"`)
 
 **Rules for extraction:**
 - Remove ALL filler words: "Ich suche", "Habt ihr", "Gibt es", "ein Buch zu/über", "Wo finde ich"

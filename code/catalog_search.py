@@ -2,13 +2,13 @@ import json
 import httpx
 from typing import Optional
 
-VUFIND_BASE = "https://disco.bib.uni-mannheim.de/vufind"  # Ihre VuFind-URL anpassen
+VUFIND_BASE = "https://disco.bib.uni-mannheim.de/vufind"  # Adjust to your VuFind URL
 
 async def search_catalog(query: str, limit: int = 5) -> Optional[str]:
-    """Sucht im VuFind-Katalog und gibt formatierten Markdown-Text zurück.
+    """Search the VuFind catalog and return formatted Markdown text.
 
-    Der Parameter ``query`` kann entweder ein JSON-Objekt mit VuFind-API-Parametern
-    (``lookfor``, ``type``, optional ``filter``) oder ein einfacher Suchstring sein.
+    The ``query`` parameter can be either a JSON object with VuFind API parameters
+    (``lookfor``, ``type``, optional ``filter``) or a plain search string.
     """
     try:
         # Parse structured VuFind parameters from JSON, fall back to plain string
@@ -42,7 +42,7 @@ async def search_catalog(query: str, limit: int = 5) -> Optional[str]:
 
         lines = []
         for r in records:
-            title  = r.get("title", "Kein Titel")
+            title  = r.get("title", "No title")
             author = r.get("author", "")
             year   = (r.get("publishDate") or [""])[0]
             fmt    = (r.get("format")      or [""])[0]

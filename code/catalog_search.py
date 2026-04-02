@@ -1,20 +1,40 @@
+import json
 import httpx
 from typing import Optional
 
 VUFIND_BASE = "https://disco.bib.uni-mannheim.de/vufind"  # Ihre VuFind-URL anpassen
 
 async def search_catalog(query: str, limit: int = 5) -> Optional[str]:
-    """Sucht im VuFind-Katalog und gibt formatierten Markdown-Text zurück."""
+    """Sucht im VuFind-Katalog und gibt formatierten Markdown-Text zurück.
+
+    Der Parameter ``query`` kann entweder ein JSON-Objekt mit VuFind-API-Parametern
+    (``lookfor``, ``type``, optional ``filter``) oder ein einfacher Suchstring sein.
+    """
     try:
+        # Parse structured VuFind parameters from JSON, fall back to plain string
+        try:
+            params_json = json.loads(query)
+            lookfor = params_json.get("lookfor", query)
+            search_type = params_json.get("type", "AllFields")
+            filters = params_json.get("filter", [])
+        except (json.JSONDecodeError, TypeError):
+            lookfor = query
+            search_type = "AllFields"
+            filters = []
+
+        params = {
+            "lookfor": lookfor,
+            "type":    search_type,
+            "limit":   limit,
+            "field[]": ["title", "author", "publishDate", "id", "format"],
+        }
+        if filters:
+            params["filter[]"] = filters
+
         async with httpx.AsyncClient(timeout=8.0) as client:
             resp = await client.get(
                 f"{VUFIND_BASE}/api/v1/search",
-                params={
-                    "lookfor": query,
-                    "type":    "AllFields",
-                    "limit":   limit,
-                    "field[]": ["title", "author", "publishDate", "id", "format"],
-                }
+                params=params,
             )
         records = resp.json().get("records", [])
         if not records:

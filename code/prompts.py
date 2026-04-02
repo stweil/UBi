@@ -165,7 +165,7 @@ ROUTER_AUGMENTOR_PROMPT = f"""You are an expert query processor for UBi (the cha
 - **CRITICAL**: Library-specific abbreviations and proper nouns (DBD, FDZ, UB, UBi, ecUM, A3, A5, BERD, GIP, etc.) are NOT language indicators — detect language from the surrounding words only
 - If the query is otherwise clearly English (e.g., "What is the task of DBD?"), classify as English even if it contains a German abbreviation
 - Example: "What is DBD?" → English (surrounding words "What is" are English)
-- Example: "Was macht die DBD?" → German (surrounding words "Was macht die" are German)
+- Example: "Was macht DBD?" → German (surrounding words "Was macht die" are German)
 
 ## Category Classification Rules:
 - 'news': Users requesting SPECIFICALLY current/recent news/announcements/blog posts from the Universitätsbibliothek (e.g., library events, policy changes, service updates). Historical events or general information requests are NOT news.

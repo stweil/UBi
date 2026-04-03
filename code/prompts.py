@@ -554,35 +554,9 @@ Output JSON:
 }}
 
 ## Query Augmentation Rules (not for Category 'katalog'):
-
-### **CRITICAL SIMPLIFICATION**:
-- **For German queries (category 'message')**: MINIMAL augmentation
-  - ONLY expand abbreviations (DBD → Digitale Bibliotheksdienste)
-  - DO NOT add contextual phrases
-  - DO NOT add synonyms or semantic expansion
-  - Keep the query structure identical to the original
-
-- **For English queries (category 'message')**: Moderate augmentation
-  - Expand abbreviations with English translation
-  - Add 1-2 relevant synonyms if helpful
-  - Keep query concise and focused
-
-### Augmentation Process:
-
-**German 'message' queries:**
-1. Expand abbreviation from the ABBREVIATIONS list
-2. Keep original query structure
-3. That's it - no other changes
-
-**English 'message' queries:**
-1. Expand abbreviation with German + English translation in parentheses
-2. Add "at the University Library Mannheim" if not contextually implied
-3. Add 1-2 relevant synonyms only if they improve semantic matching
-
-### Language Consistency:
-- The ENTIRE augmented query MUST be in the detected language
-- NO mixing languages
-- Use terminology appropriate to the detected language
+- **German**: ONLY expand abbreviations from the ABBREVIATIONS list; keep the rest of the query unchanged
+- **English**: Expand abbreviations (German + English translation in parentheses); optionally add 1-2 synonyms
+- Keep the augmented query SHORT (under 15 words) and in the detected language only
 
 ## Output Format (JSON):
 {{
@@ -592,61 +566,9 @@ Output JSON:
 }}
 
 ### Examples:
-
-**Example 1 - German query with abbreviation (MINIMAL augmentation):**
-User: "Was macht DBD?"
-Output: {{
-  "language": "German",
-  "category": "message",
-  "augmented_query": "Was macht Digitale Bibliotheksdienste"
-}}
-
-**Example 2 - German query about role:**
-User: "Was ist die Rolle von FDZ?"
-Output: {{
-  "language": "German",
-  "category": "message",
-  "augmented_query": "Was ist die Rolle von Forschungsdatenzentrum"
-}}
-
-**Example 3 - English query with abbreviation:**
-User: "What is the task of DBD?"
-Output: {{
-  "language": "English",
-  "category": "message",
-  "augmented_query": "What is the task and role of DBD (Digitale Bibliotheksdienste / Digital Library Services) at the University Library Mannheim"
-}}
-
-**Example 4 - English query about role:**
-User: "What does the UB offer?"
-Output: {{
-  "language": "English",
-  "category": "message",
-  "augmented_query": "What does the UB (Universitätsbibliothek / University Library) Mannheim offer services resources"
-}}
-
-**Example 5 - German location query (NO augmentation needed):**
-User: "Wo ist A3?"
-Output: {{
-  "language": "German",
-  "category": "message",
-  "augmented_query": "Wo ist Bibliotheksbereich A3"
-}}
-
-**Example 6 - German borrowing question (minimal augmentation):**
-User: "Wie kann ich Bücher ausleihen?"
-Output: {{
-  "language": "German",
-  "category": "message",
-  "augmented_query": "Wie kann ich Bücher ausleihen"
-}}
-
-### CRITICAL RULES:
-1. For German queries: ONLY expand abbreviations - nothing else
-2. For English queries: Keep augmentation moderate and focused
-3. NEVER add phrases like "Was sind die Aufgaben und Verantwortlichkeiten der..."
-4. Keep augmented queries SHORT - preferably under 15 words
-5. The goal is semantic similarity, not comprehensive question formulation"""
+User: "Was macht DBD?" → {{"language": "German", "category": "message", "augmented_query": "Was macht Digitale Bibliotheksdienste"}}
+User: "What is the task of DBD?" → {{"language": "English", "category": "message", "augmented_query": "What is the task of DBD (Digitale Bibliotheksdienste / Digital Library Services)"}}
+User: "Wo ist A3?" → {{"language": "German", "category": "message", "augmented_query": "Wo ist Bibliotheksbereich A3"}}"""
 
 # === Prompts for Data Processing ===
 PROMPT_POST_PROCESSING = """You are an expert at preparing markdown documents for Retrieval-Augmented Generation (RAG) systems.

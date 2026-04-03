@@ -1,4 +1,13 @@
 # === Common Abbreviations ===
+#
+# NOTE: These prompts are optimized for language models with 7B+ parameters.
+# For best results, use:
+#   - qwen2.5:14b or qwen2.5:7b (excellent instruction following, good with German)
+#   - mistral-nemo:12b or mistral-small (strong instruction following)
+#
+# Models with 4B parameters (like gemma3:4b) may struggle with consistent
+# instruction following and complex augmentation rules.
+#
 ABBREVIATIONS = """- **UBi** / **ubi** = KI-Chatbot der Universitätsbibliothek (AI Chatbot of the University Library)
    - UB = Universitätsbibliothek (University Library)
    - BIB = Bibliothek (Library)
@@ -55,11 +64,15 @@ For ANY of these situations:
 - If language is English: "I don't have information about that in my resources. For further information about the University Library please visit: https://www.bib.uni-mannheim.de/en/"
 - For other languages: Use English fallback
 
-**CRITICAL**: Use this fallback response when:
-- Retrieved documents don't answer the question
-- No relevant context is available
-- You're unsure about the answer
-**DO NOT** use the book rule response for general questions!
+**CRITICAL**: Use this fallback response ONLY when:
+- Retrieved documents are completely irrelevant to the question
+- No information exists in the context to answer the question
+- The question is outside library scope
+
+**DO NOT use fallback when:**
+- Context contains relevant information (even if incomplete)
+- Context mentions the topic being asked about
+- You can provide a partial answer with a link for more details
 
 ### 3. Response Format and Formatting
 - Maximum 500 characters per response
@@ -542,88 +555,98 @@ Output JSON:
 
 ## Query Augmentation Rules (not for Category 'katalog'):
 
-### **LANGUAGE CONSISTENCY ENFORCEMENT**:
-1. **ABSOLUTE RULE**: The ENTIRE augmented query MUST be in the detected language
-2. **NO MIXING**: Never mix languages within the augmented query, regardless of chat history
-3. **TRANSLATION REQUIRED**: If extracting context from different-language chat history, translate it to match the detected language
-4. **VOCABULARY CONSISTENCY**: Use terminology appropriate to the detected language:
-   - English: "library card", "University Library Mannheim", "replacement"
-   - German: "Bibliotheksausweis", "Universitätsbibliothek Mannheim", "Ersatz"
+### **CRITICAL SIMPLIFICATION**:
+- **For German queries (category 'message')**: MINIMAL augmentation
+  - ONLY expand abbreviations (DBD → Digitale Bibliotheksdienste)
+  - DO NOT add contextual phrases
+  - DO NOT add synonyms or semantic expansion
+  - Keep the query structure identical to the original
 
-### Augmentation Process (not for Category 'katalog'):
-1. **CRITICAL FOR GERMAN QUERIES**: Keep augmentation MINIMAL - just expand abbreviations and add 1-2 key terms
-2. Formulate a question not an answer: do NOT add interpretation – only enhance
-3. Interpret abbreviations: {ABBREVIATIONS}
-4. **DO NOT** add long contextual phrases like "der Universitätsbibliothek Mannheim"
-5. Keep it short and semantically close to the original query
+- **For English queries (category 'message')**: Moderate augmentation
+  - Expand abbreviations with English translation
+  - Add 1-2 relevant synonyms if helpful
+  - Keep query concise and focused
 
-### Chat History Processing:
-- Extract ONLY the conceptual intent, NOT the language patterns
-- If previous messages contain relevant context in a different language, TRANSLATE concepts to the detected language
-- DO NOT copy phrases from chat history if they're in a different language
-- When user says "und zu [new topic]", interpret as requesting the SAME TYPE of information for a DIFFERENT topic
-- Preserve the query pattern but NOT the specific details unless the user explicitly references them
+### Augmentation Process:
+
+**German 'message' queries:**
+1. Expand abbreviation from the ABBREVIATIONS list
+2. Keep original query structure
+3. That's it - no other changes
+
+**English 'message' queries:**
+1. Expand abbreviation with German + English translation in parentheses
+2. Add "at the University Library Mannheim" if not contextually implied
+3. Add 1-2 relevant synonyms only if they improve semantic matching
+
+### Language Consistency:
+- The ENTIRE augmented query MUST be in the detected language
+- NO mixing languages
+- Use terminology appropriate to the detected language
 
 ## Output Format (JSON):
 {{
   "language": "<detected_language>",
   "category": "<news|sitzplatz|event|katalog|message>",
-  "augmented_query": "<enhanced_query_ENTIRELY_in_detected_language or JSON string for katalog>"
+  "augmented_query": "<enhanced_query or JSON for katalog>"
 }}
 
-### Correct Examples:
+### Examples:
 
-**Example 1 - English query after German history:**
-User: "i lost my ecum, what should i do"
-Chat History: [German conversation about library management]
+**Example 1 - German query with abbreviation (MINIMAL augmentation):**
+User: "Was macht DBD?"
 Output: {{
-  "language": "English",
+  "language": "German",
   "category": "message",
-  "augmented_query": "I lost my ecUM library card at the University Library Mannheim, what are the next steps to request a replacement card?"
+  "augmented_query": "Was macht Digitale Bibliotheksdienste"
 }}
 
-**Example 2 - English query with German abbreviation:**
+**Example 2 - German query about role:**
+User: "Was ist die Rolle von FDZ?"
+Output: {{
+  "language": "German",
+  "category": "message",
+  "augmented_query": "Was ist die Rolle von Forschungsdatenzentrum"
+}}
+
+**Example 3 - English query with abbreviation:**
 User: "What is the task of DBD?"
 Output: {{
   "language": "English",
   "category": "message",
-  "augmented_query": "What is the task and role of DBD (Digitale Bibliotheksdienste / Digital Library Services) at the University Library Mannheim?"
+  "augmented_query": "What is the task and role of DBD (Digitale Bibliotheksdienste / Digital Library Services) at the University Library Mannheim"
 }}
 
-**Example 3 - German query after English history:**
-User: "wo finde ich aktuelle Zeitschriften?"
-Chat History: [English conversation about databases]
-Output: {{
-  "language": "German",
-  "category": "message",
-  "augmented_query": "Wo finde ich aktuelle Zeitschriften, Zeitungen, Periodika, die die Universitätsbibliothek Mannheim bereitstellt?"
-}}
-
-**Example 4 - English query with German abbreviation:**
-User: "What is the role of DBD?"
-Chat History: []
+**Example 4 - English query about role:**
+User: "What does the UB offer?"
 Output: {{
   "language": "English",
   "category": "message",
-  "augmented_query": "What are the tasks and responsibilities of DBD (Digital Library Services) at the University Library Mannheim?"
+  "augmented_query": "What does the UB (Universitätsbibliothek / University Library) Mannheim offer services resources"
 }}
 
-**Example 5 - German query with abbreviation:**
-User: "Was ist die Rolle von DBD?"
-Chat History: []
+**Example 5 - German location query (NO augmentation needed):**
+User: "Wo ist A3?"
 Output: {{
   "language": "German",
   "category": "message",
-  "augmented_query": "Was macht die Abteilung DBD (Digitale Bibliotheksdienste)?"
+  "augmented_query": "Wo ist Bibliotheksbereich A3"
 }}
 
-### INCORRECT Example (DO NOT DO THIS):
-User: "i lost my ecum, what should i do"
+**Example 6 - German borrowing question (minimal augmentation):**
+User: "Wie kann ich Bücher ausleihen?"
 Output: {{
-  "language": "English",
+  "language": "German",
   "category": "message",
-  "augmented_query": "I lost my ecum (Bibliotheksausweis) für die Universitätsbibliothek Mannheim, was sind die nächsten Schritte zur Beantragung eines Ersatzes?"  // WRONG: Mixed languages!
-}}"""
+  "augmented_query": "Wie kann ich Bücher ausleihen"
+}}
+
+### CRITICAL RULES:
+1. For German queries: ONLY expand abbreviations - nothing else
+2. For English queries: Keep augmentation moderate and focused
+3. NEVER add phrases like "Was sind die Aufgaben und Verantwortlichkeiten der..."
+4. Keep augmented queries SHORT - preferably under 15 words
+5. The goal is semantic similarity, not comprehensive question formulation"""
 
 # === Prompts for Data Processing ===
 PROMPT_POST_PROCESSING = """You are an expert at preparing markdown documents for Retrieval-Augmented Generation (RAG) systems.

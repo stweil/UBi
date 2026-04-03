@@ -1,4 +1,5 @@
 import datetime
+import logging
 import os
 import re
 import yaml
@@ -86,15 +87,20 @@ async def create_rag_chain(debug=False):
             with open(file, 'r', encoding='utf-8') as f:
                 content = f.read()
 
-            # Extract YAML frontmatter and preserve as metadata
-            if content.startswith('---'):
-                parts = content.split('---', 2)
-                if len(parts) >= 3:
-                    metadata = yaml.safe_load(parts[1]) or {}
-                    text_content = parts[2].strip()
-                else:
+            # Extract YAML frontmatter and preserve as metadata.
+            # Use a regex that only matches '---' at the very start of the file,
+            # followed by a closing '---' on its own line, to avoid false splits
+            # on horizontal rules or code blocks.
+            frontmatter_match = re.match(
+                r'\A---\r?\n(.*?)\r?\n---\r?\n(.*)', content, re.DOTALL
+            )
+            if frontmatter_match:
+                try:
+                    metadata = yaml.safe_load(frontmatter_match.group(1)) or {}
+                except yaml.YAMLError:
+                    logging.warning("Failed to parse YAML frontmatter in %s", file)
                     metadata = {}
-                    text_content = content
+                text_content = frontmatter_match.group(2).strip()
             else:
                 metadata = {}
                 text_content = content

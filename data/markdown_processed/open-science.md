@@ -1,5 +1,5 @@
 ---
-title: Open Science Initiatives und Services an der Universität Mannheim – Überblick und Anlaufstellen
+title: "Open Science Initiatives und Services an der Universität Mannheim – Überblick und Anlaufstellen"
 source_url_de: https://www.uni-mannheim.de/open-science/
 source_url_en: https://www.uni-mannheim.de/en/open-science/
 category: Services

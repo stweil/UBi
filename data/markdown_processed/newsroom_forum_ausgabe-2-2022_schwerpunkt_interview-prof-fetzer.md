@@ -1,0 +1,39 @@
+---
+title: Internationalisierungsstrategie an der Universität Mannheim
+source_url_de: ['Bitte deutsche URL einfügen']
+source_url_en: https://www.uni-mannheim.de/en/newsroom/forum/edition-2-2022/focus/interview-prof-fetzer/
+category: Services
+tags: ['Internationalisierung', 'Wissenschaftsaustausch', 'Forschung', 'Studierende', 'ENGAGE.EU', 'Mobilität']
+language: de
+---
+
+# „Trotz zunehmender Herausforderungen schaue ich optimistisch in die Zukunft“
+
+Seit einem Jahr ist Prof. Dr. Thomas Fetzer Prorektor für Struktur- und Entwicklungsplanung, Internationalisierung und Gleichstellung. In diesem Sommer hat er die Koordination der Europäischen Universität ENGAGE.EU übernommen. FORUM hat mit dem Juristen über die Bedeutung und Entwicklung der Internationalisierung an der Universität Mannheim gesprochen.
+
+## Die Bedeutung der Internationalisierung
+
+**FORUM: Welche Bedeutung hat die Internationalisierung für die Universität Mannheim?**
+**Fetzer:** Die Internationalisierung ist schon seit langer Zeit eines der Markenzeichen der Universität Mannheim. Wir wollen in Forschung und Lehre immer besser werden und dazu brauchen wir die besten Köpfe an der Universität Mannheim. Die finden wir aber nicht nur in Deutschland, sondern im internationalen Wettbewerb. Zudem haben wir unseren Studierenden gegenüber eine Verantwortung, sie zu Europäern, zu weltoffenen Menschen mit einem weiten Horizont und einem offenen Mindset zu befähigen. Dazu gehören zum Beispiel das Angebot eines Auslandsstudiums; aber auch, dass wir hier einen Campus haben, der nicht zuletzt dank der zahlreichen englischsprachigen Lehrveranstaltungen international ausgerichtet ist und vielfältige Möglichkeiten bietet, sich mit Studierenden aus allen Teilen der Welt auszutauschen. Schließlich ist die internationale Zusammenarbeit von Wissenschaftlerinnen und Wissenschaftlern auf der Forschungsebene von immenser Bedeutung. Sie erhöht unsere internationale Sichtbarkeit, so dass wir als exzellenter Partner auch für internationale Projekte wahrgenommen werden. Ein wichtiges Stichwort ist hier Science Diplomacy. Wenn alle anderen diplomatischen Kanäle verstopft sind, oder abzureißen drohen, dann ist der wissenschaftliche Austausch oftmals einer, der als letzter noch funktionieren kann.
+
+**FORUM: Wie ist die Universität Mannheim im Vergleich mit anderen Universitäten im Bereich Internationalisierung aufgestellt?**
+**Fetzer:** Wir sind für eine Universität unserer Größe sehr international. Wir haben rund 450 Partneruniversitäten, wir haben eine hohe Outgoing- und Incoming-Rate bei den Studierenden. Wir haben einen weitgehend bilingualen Campus und das Wichtigste ist: Es ist in den Köpfen drin, es gibt ein entsprechendes Bewusstsein sowohl im Rektorat als auch in der Verwaltung, bei den Studierenden und den Lehrenden. In einer jährlichen Auswertung von DAAD, DFG, HRK und der Alexander von Humboldt-Stiftung zum Stand der Internationalisierung an den Universitäten sind wir immer in der Spitzengruppe dabei. Die Ausgangssituation ist sehr gut.
+
+## Herausforderungen und Zukunftsperspektiven
+
+**FORUM: In jüngster Zeit haben große Geldgeber wie das Bundesbildungsministerium und das Auswärtige Amt – hier sind zum Beispiel der DAAD und die Alexander von Humboldt-Stiftung betroffen – Gelder gestrichen. Was bedeutet das?**
+**Fetzer:** Es war allen Beteiligten klar, dass Corona, Wirtschaftskrise und Krieg dazu führen, dass das Geld knapper wird. Aber ich halte es für fatal, dass als allererstes im Wissenschafts- und Bildungsbereich und damit auch bei der Internationalisierung gekürzt wird. Von den Mittelkürzungen beim Auswärtigen Amt und beim Bildungsministerium sind konkrete Programme an der Universität Mannheim betroffen, z. B. Stipendien für Doktoranden, die es nicht mehr geben wird. Wir sind entschlossen, die Internationalisierung weiter zu stärken, aber wir werden mit weniger Geld zurechtkommen müssen. Das bedeutet, dass wir kreativer werden müssen. Denn nicht nur für unsere Studierenden, sondern gerade auch für unsere jungen Wissenschaftlerinnen und Wissenschaftler kann die internationale Mobilität ein wichtiger Aspekt für eine erfolgreiche Karriere sein.
+
+**FORUM: Haben Sie schon konkrete Ideen?**
+**Fetzer:** Ich glaube zum einen, dass wir die Internationalisierung durch digitale Technologien stärken können. Wir haben während der Corona-Pandemie gesehen, dass das funktionieren kann. Ein Beispiel dafür sind so genannte COIL (Collaborative Online International Learning)-Kurse, bei denen zwei Lehrende von verschiedenen internationalen Universitäten gemeinsam digital einen Kurs unterrichten, an dem Studierende von beiden Universitäten teilnehmen können. In dem Bereich wird viel experimentiert und das ist eine gute Entwicklung.
+Zum anderen müssen wir systematisch daran arbeiten, auf europäischer Ebene mehr Geld für Forschung und Austausch zu akquirieren. Darüber hinaus müssen wir überlegen, wie man auch die Gesellschaft einbeziehen kann. Der von der Stiftung Universität Mannheim aufgelegte Ukraine-Fonds ist hierfür ein gutes Beispiel. Natürlich ist klar, dass die Gesellschaft nicht alles auffangen kann, was an staatlichen Mitteln nicht mehr da ist. Wir müssen aber insgesamt breiter denken. Und wir müssen auch mit den internationalen Partnern noch direkter in den Austausch kommen und überlegen, wie wir gemeinsam attraktive Programme finanzierbar gestalten können. Das sind nur ein paar Ansätze.
+
+**FORUM: Neben den finanziellen Herausforderungen ist in letzter Zeit unter anderem in Folge des Ukraine-Kriegs auch das Thema Science Diplomacy schwieriger geworden. Schauen Sie dennoch optimistisch in die Zukunft?**
+**Fetzer:** In der Tat wird auch die wissenschaftliche Zusammenarbeit schwieriger. Das ist nicht nur bei Ländern wie Russland oder China so, sondern das sehen wir vereinzelt auch in Europa und haben wir teilweise während der letzten Administration der USA erlebt. Trotzdem blicke ich optimistisch in die Zukunft, denn ich sehe in der Wissenschaftscommunity, auch in herausfordernden Staaten, den Willen, das Bedürfnis und die Bereitschaft – oftmals auch unter Inkaufnahme persönlicher Risiken oder Nachteile – wissenschaftlichen Austausch fortzuführen, weil allen Beteiligten klar ist, wie wichtig das ist. Internationaler Wissenschaftsaustausch trägt zur Stabilisierung von Rechtsstaatlichkeit und Demokratie bei, indem zum Beispiel Wissenschaft auch Entscheidungsgrundlagen für eine evidenzbasierte Politik liefert.
+
+## Schwerpunkte als Prorektor
+
+**FORUM: Welche Schwerpunkte haben Sie sich als Prorektor für Internationales gesetzt?**
+**Fetzer:** Ein Ziel ist, dass im nächsten Struktur- und Entwicklungsplan die Internationalisierung noch breiter verankert wird. Und wir sind nach wie vor ambitioniert bei der Zahl der Studierenden, die wir ins Ausland schicken wollen. Ein weiterer Schwerpunkt ist ENGAGE.EU, die europäische Hochschulallianz, die von der Universität Mannheim koordiniert wird. Mir ist wichtig, ENGAGE.EU als einen wesentlichen Bestandteil in die gesamte Internationalisierung der Universität Mannheim zu integrieren. Wichtig finde ich zudem, dass wir uns in internationalen Netzwerken noch stärker engagieren. Rektor Prof. Puhl ist ins Presidential Steering Committee von U7+, einer Allianz internationaler Universitäten, die sich im Nachgang des G7-Treffens in Frankreich gegründet hat, gewählt worden. Solche Netzwerke werden wichtiger. Und der letzte Punkt wäre, dass wir bei der internationalen Forschungsförderung erfolgreicher werden. Wir haben ja bereits eine Reihe von ERC Grants, das ist eine ausgesprochen prestigeträchtige Förderung des Europäischen Forschungsrats. Aber in dem Bereich können wir noch stärker werden. Es gibt viele relevante und attraktive Fördermöglichkeiten auf europäischer und internationaler Ebene, deren Potentiale wir noch besser nutzen könnten.
+
+*Interview: Katja Bauer / Oktober 2022*

@@ -1,5 +1,5 @@
 ---
-title: Fachreferentinnen und Fachreferenten der Universitätsbibliothek Mannheim – Fachliche Recherche und Beratung nach Fachgebieten
+title: "Fachreferentinnen und Fachreferenten der Universitätsbibliothek Mannheim – Fachliche Recherche und Beratung nach Fachgebieten"
 source_url_de: https://www.bib.uni-mannheim.de/medien/fachliche-recherche/
 source_url_en: https://www.bib.uni-mannheim.de/en/resources/subject-specific-research/
 category: Services

@@ -1,5 +1,5 @@
 ---
-title: Ausbildung zur/zum Fachangestellten für Medien- und Informationsdienste (FaMI) an der Universitätsbibliothek Mannheim – Fachrichtung Bibliothek
+title: "Ausbildung zur/zum Fachangestellten für Medien- und Informationsdienste (FaMI) an der Universitätsbibliothek Mannheim – Fachrichtung Bibliothek"
 source_url_de: https://www.uni-mannheim.de/universitaet/arbeiten-an-der-universitaet/ausbildung-duales-studium-praktikum/ausbildung/fach-angestellte-r-fuer-medien-und-informations-dienste/
 source_url_en: https://www.uni-mannheim.de/en/about/working-at-the-university/vocational-training-cooperative-study-program-internship/vocational-training/media-and-information-specialist-fami/
 category: Benutzung

@@ -219,7 +219,7 @@ Analysis: Starts with "What is" (English question structure)
 Detected Language: English ✅
 
 **Example 2:**
-User: "Was ist die Rolle des DBD?"
+User: "Was ist die Rolle von DBD?"
 Analysis: Starts with "Was ist" (German question structure)
 Detected Language: German ✅
 

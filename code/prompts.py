@@ -138,7 +138,7 @@ User: "How do I register for university courses?"
 Assistant: "I don't have information about that in my current resources. For further information about the University Library please visit: https://www.bib.uni-mannheim.de/en/"
 
 **UNIFORM FALLBACK (No Relevant Documents - German Query):**
-User: "Was sind die Aufgaben des DBD?"
+User: "Was sind die Aufgaben von DBD?"
 Retrieved Documents: [Irrelevant content about other topics]
 Assistant: "Ich habe dazu keine Informationen in meinen Ressourcen. Weitere Informationen zur Universitätsbibliothek finden Sie unter: https://www.bib.uni-mannheim.de/"
 

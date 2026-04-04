@@ -108,6 +108,7 @@ async def create_rag_chain(debug=False):
                         elif isinstance(value, (str, int, float, bool)):
                             sanitized_metadata[key] = value
                         elif value is None:
+                            # Skip None values as ChromaDB does not support them
                             continue
                         else:
                             sanitized_metadata[key] = str(value)

@@ -19,18 +19,12 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent))
-
-from config import CHUNK_OVERLAP, CHUNK_SIZE, ENV_PATH, PERSIST_DIR
+from config import CHUNK_OVERLAP, CHUNK_SIZE, PERSIST_DIR
 from rag_local import create_rag_chain
 
 
-async def build_vectorstore(force_rebuild: bool = False):
+async def build_vectorstore(force_rebuild: bool = False, incremental: bool = True):
     """Build the vector database."""
-
-    # Load environment
-    load_dotenv(ENV_PATH)
 
     # Check if using OpenAI vectorstore
     use_openai = os.getenv("USE_OPENAI_VECTORSTORE", "False").lower() == "true"
@@ -48,10 +42,15 @@ async def build_vectorstore(force_rebuild: bool = False):
 
     # Check if DB already exists
     if persist_path.exists() and not force_rebuild:
-        print("✅ Vector database already exists at:")
-        print(f"   {persist_path}")
-        print("\n💡 Use --force to rebuild")
-        return True
+        if incremental:
+            print("📊 Vector database exists, checking for updates...")
+            print(f"   Location: {persist_path}")
+            print()
+        else:
+            print("✅ Vector database already exists at:")
+            print(f"   {persist_path}")
+            print("\n💡 Use --force to rebuild or --incremental to update")
+            return True
 
     if force_rebuild and persist_path.exists():
         print(f"🗑️  Removing existing database at {persist_path}")
@@ -62,7 +61,6 @@ async def build_vectorstore(force_rebuild: bool = False):
     print(f"   Embedding model: {ollama_embedding_model}")
     print(f"   Chunk size: {CHUNK_SIZE}")
     print(f"   Chunk overlap: {CHUNK_OVERLAP}")
-    print(f"   Output path: {persist_path}")
     print()
 
     try:
@@ -87,11 +85,31 @@ def main():
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Force rebuild even if database exists"
+        help="Force full rebuild even if database exists"
+    )
+    parser.add_argument(
+        "--incremental",
+        action="store_true",
+        default=True,
+        help="Use incremental updates (default: True)"
+    )
+    parser.add_argument(
+        "--no-incremental",
+        action="store_false",
+        dest="incremental",
+        help="Disable incremental updates, do full rebuild"
     )
     args = parser.parse_args()
 
-    success = asyncio.run(build_vectorstore(force_rebuild=args.force))
+    # Set environment variable for incremental mode
+    os.environ["VECTORSTORE_INCREMENTAL"] = "true" if args.incremental else "false"
+
+    # Load environment variables
+    env_path = Path(__file__).parent.parent / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+
+    success = asyncio.run(build_vectorstore(force_rebuild=args.force, incremental=args.incremental))
     sys.exit(0 if success else 1)
 
 

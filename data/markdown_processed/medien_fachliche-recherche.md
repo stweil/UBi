@@ -1,5 +1,5 @@
 ---
-title: Fachliche Recherche – Fachreferent:innen und Kontaktinformationen der Universitätsbibliothek Mannheim
+title: "Fachliche Recherche – Fachreferent:innen und Kontaktinformationen der Universitätsbibliothek Mannheim"
 source_url_de: https://www.bib.uni-mannheim.de/medien/fachliche-recherche/
 source_url_en: https://www.bib.uni-mannheim.de/en/resources/subject-specific-research/
 category: Services

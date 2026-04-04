@@ -1,5 +1,5 @@
 ---
-title: Einstieg und Angebote der Universitätsbibliothek Mannheim für neue Nutzer:innen
+title: "Einstieg und Angebote der Universitätsbibliothek Mannheim für neue Nutzer:innen"
 source_url_de: https://www.bib.uni-mannheim.de/neu-hier/
 source_url_en: https://www.bib.uni-mannheim.de/en/getting-started/
 category: Benutzung

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Build or rebuild the vector database for local RAG.
 Run this script whenever you update the markdown documents.
@@ -20,12 +22,15 @@ from dotenv import load_dotenv
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
 
-from config import CHUNK_OVERLAP, CHUNK_SIZE, PERSIST_DIR
+from config import CHUNK_OVERLAP, CHUNK_SIZE, ENV_PATH, PERSIST_DIR
 from rag_local import create_rag_chain
 
 
 async def build_vectorstore(force_rebuild: bool = False):
     """Build the vector database."""
+
+    # Load environment
+    load_dotenv(ENV_PATH)
 
     # Check if using OpenAI vectorstore
     use_openai = os.getenv("USE_OPENAI_VECTORSTORE", "False").lower() == "true"
@@ -43,9 +48,9 @@ async def build_vectorstore(force_rebuild: bool = False):
 
     # Check if DB already exists
     if persist_path.exists() and not force_rebuild:
-        print(f"✅ Vector database already exists at:")
+        print("✅ Vector database already exists at:")
         print(f"   {persist_path}")
-        print(f"\n💡 Use --force to rebuild")
+        print("\n💡 Use --force to rebuild")
         return True
 
     if force_rebuild and persist_path.exists():
@@ -53,21 +58,22 @@ async def build_vectorstore(force_rebuild: bool = False):
         shutil.rmtree(persist_path)
 
     # Build the database
-    print(f"🔨 Building vector database...")
+    print("🔨 Building vector database...")
     print(f"   Embedding model: {ollama_embedding_model}")
     print(f"   Chunk size: {CHUNK_SIZE}")
     print(f"   Chunk overlap: {CHUNK_OVERLAP}")
+    print(f"   Output path: {persist_path}")
     print()
 
     try:
         await create_rag_chain(debug=True)
         print()
-        print(f"✅ Vector database built successfully!")
+        print("✅ Vector database built successfully!")
         print(f"   Location: {persist_path}")
-        print(f"\n💡 The app will now load instantly on startup")
+        print("\n💡 The app will now load instantly on startup")
         return True
     except Exception as e:
-        print(f"\n❌ Failed to build vector database:")
+        print("\n❌ Failed to build vector database:")
         print(f"   {e}")
         import traceback
         traceback.print_exc()
@@ -84,11 +90,6 @@ def main():
         help="Force rebuild even if database exists"
     )
     args = parser.parse_args()
-
-    # Load environment variables
-    env_path = Path(__file__).parent.parent / ".env"
-    if env_path.exists():
-        load_dotenv(env_path)
 
     success = asyncio.run(build_vectorstore(force_rebuild=args.force))
     sys.exit(0 if success else 1)

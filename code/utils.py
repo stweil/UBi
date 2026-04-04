@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 from config import ENV_PATH
 
 
-UI_VARS_FILE = Path("./public/ui_vars.json")
+UI_VARS_FILE = Path("public/ui_vars.json")
 
 # === Global Quiet Mode ===
 load_dotenv(ENV_PATH)

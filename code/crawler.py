@@ -758,11 +758,11 @@ def process_urls(urls: list[str], output_dir: str = "", quiet: bool | None = Non
 @click.option(
     "--output-dir",
     "-o",
-    default=None,
+    default=str(CRAWL_DIR),
     type=click.Path(),
     help="Output directory for crawled markdown files (overrides CRAWL_DIR)",
 )
-def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tuple[str, ...], output_dir: Optional[str]) -> Optional[list[str] | list[Path]]:
+def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tuple[str, ...], output_dir: str) -> Optional[list[str] | list[Path]]:
     """
     Main crawling function.
     """
@@ -771,7 +771,7 @@ def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tu
         utils.set_quiet_mode(True)
 
     # Determine output directory
-    crawl_output_dir = Path(output_dir) if output_dir is not None else CRAWL_DIR
+    crawl_output_dir = Path(output_dir)
     crawl_output_dir.mkdir(parents=True, exist_ok=True)
 
     # Write hashes only and exit

@@ -1,5 +1,5 @@
 ---
-title: Nachrückverfahren: Vergabe freier Studienplätze
+title: "Nachrückverfahren: Vergabe freier Studienplätze"
 source_url_de: https://www.uni-mannheim.de/studium/vor-dem-studium/bewerbung/bewerbung-a-bis-z/nachrueckverfahren/
 source_url_en: https://www.uni-mannheim.de/en/academics/before-your-studies/applying/the-a-to-z-of-applying/procedure-of-succession/
 category: Benutzung

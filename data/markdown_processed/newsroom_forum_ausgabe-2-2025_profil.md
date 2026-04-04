@@ -1,5 +1,5 @@
 ---
-title: Aktuelle Universitätsthemen: UNIT-Bau, Rankings und Nachhaltigkeit
+title: "Aktuelle Universitätsthemen: UNIT-Bau, Rankings und Nachhaltigkeit"
 source_url_de: (Not specified in the document)
 source_url_en: https://www.uni-mannheim.de/en/newsroom/forum/edition-2-2025/profile/
 category: Medien

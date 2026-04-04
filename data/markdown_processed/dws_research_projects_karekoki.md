@@ -1,5 +1,5 @@
 ---
-title: KarekoKI: Kartellrechtskonforme KI und die Regulierung algorithmischer Preisbildung
+title: "KarekoKI: Kartellrechtskonforme KI und die Regulierung algorithmischer Preisbildung"
 source_url_de: https://www.uni-mannheim.de/dws/research/projects/karekoki/
 category: Projekte
 tags: ['KI', 'Kartellrecht', 'Wettbewerbsrecht', 'Preisbildung', 'Reinforcement Learning', 'Algorithmik', 'KarekoKI', 'Mannheim']

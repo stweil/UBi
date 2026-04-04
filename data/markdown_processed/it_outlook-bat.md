@@ -3,7 +3,7 @@ title: Einrichtung der Outlook Autodiscovery für Exchange-Postfächer
 source_url_de: None
 source_url_en: https://www.uni-mannheim.de/en/it/outlook-bat/
 category: Services
-tags: ['Outlook', 'Exchange', 'Autodiscovery', 'RegKey', 'Einrichtung', 365, ""'Verbindung']
+tags: ['Outlook', 'Exchange', 'Autodiscovery', 'RegKey', 'Einrichtung', "365", 'Verbindung']
 language: de
 ---
 

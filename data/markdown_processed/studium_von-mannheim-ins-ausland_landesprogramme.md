@@ -1,5 +1,5 @@
 ---
-title: Landesprogramme: Austauschstudien zwischen Baden-Württemberg und US/Kanada
+title: "Landesprogramme: Austauschstudien zwischen Baden-Württemberg und US/Kanada"
 source_url_de: https://www.uni-mannheim.de/studium/von-mannheim-ins-ausland/landesprogramme/
 source_url_en: https://www.uni-mannheim.de/en/academics/going-abroad/state-to-state-programs/
 category: Services

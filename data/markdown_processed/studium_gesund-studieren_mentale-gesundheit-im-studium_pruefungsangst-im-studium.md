@@ -1,5 +1,5 @@
 ---
-title: Prüfungsangst im Studium: Ursachen, Symptome und Bewältigungsstrategien
+title: "Prüfungsangst im Studium: Ursachen, Symptome und Bewältigungsstrategien"
 source_url_de: https://www.uni-mannheim.de/studium/gesund-studieren/mentale-gesundheit-im-studium/pruefungsangst-im-studium/
 source_url_en: https://www.uni-mannheim.de/en/academics/studying-the-healthy-way/good-mental-health/exam-anxiety/
 category: Services

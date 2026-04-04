@@ -1,5 +1,5 @@
 ---
-title: Weiterbildungsmöglichkeiten an der Uni Mannheim: Zertifikate, Sprachen und Studium Generale
+title: "Weiterbildungsmöglichkeiten an der Uni Mannheim: Zertifikate, Sprachen und Studium Generale"
 source_url_de: None
 source_url_en: https://www.uni-mannheim.de/en/academics/before-your-studies/programs/bausteine-weiterbildung/
 category: Services

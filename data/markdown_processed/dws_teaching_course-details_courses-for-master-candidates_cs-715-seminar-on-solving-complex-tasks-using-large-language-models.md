@@ -1,5 +1,5 @@
 ---
-title: Seminar CS715: Solving Complex Tasks using Large Language Models (RAG & Agents)
+title: "Seminar CS715: Solving Complex Tasks using Large Language Models (RAG & Agents)"
 source_url_de: https://www.uni-mannheim.de/dws/teaching/course-details/courses-for-master-candidates/cs-715-seminar-on-solving-complex-tasks-using-large-language-models/
 source_url_en: https://www.uni-mannheim.de/dws/teaching/course-details/courses-for-master-candidates/cs-715-seminar-on-solving-complex-tasks-using-large-language-models/
 category: Benutzung

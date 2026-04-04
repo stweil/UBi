@@ -1,5 +1,5 @@
 ---
-title: Bachelorstudium an der Universität Mannheim: Überblick und Studiengänge
+title: "Bachelorstudium an der Universität Mannheim: Überblick und Studiengänge"
 source_url_de: https://www.uni-mannheim.de/studium/vor-dem-studium/studienangebot/bachelor-studieren/
 source_url_en: https://www.uni-mannheim.de/en/academics/before-your-studies/programs/pursuing-a-bachelors-degree-in-mannheim/
 category: Benutzung

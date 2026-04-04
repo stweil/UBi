@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 
-import aiohttp
 import asyncio
-import click
 import re
-import requests
 import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup, Tag
 from pathlib import Path
 from typing import Optional
 from urllib.parse import urljoin, urlparse
-from tqdm import tqdm
 
+import aiohttp
+import click
+import requests
 import utils
+from bs4 import BeautifulSoup, Tag
 from config import CRAWL_DIR, DATA_DIR, SITEMAP_URL, URLS_TO_CRAWL
 from markdown_processing import write_markdown_from_url
+from tqdm import tqdm
 
 
 # === Crawler Functions ===

@@ -2,17 +2,17 @@ import datetime
 import logging
 import os
 import re
-import yaml
 from operator import itemgetter
 
 import chromadb.config
+import yaml
 from config import CHUNK_OVERLAP, CHUNK_SIZE, DATA_DIR, PERSIST_DIR
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from prompts import BASE_SYSTEM_PROMPT
 from rich import print
 

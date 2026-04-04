@@ -3,15 +3,11 @@ from __future__ import annotations
 import json
 import os
 import re
+
 import json_repair
 from openai import AsyncOpenAI
 from prompts import ROUTER_AUGMENTOR_PROMPT
-from utils import (
-    is_valid_json,
-    set_quiet_mode,
-    print_info,
-    print_err
-)
+from utils import is_valid_json, print_err, print_info, set_quiet_mode
 
 
 def _openai_key_is_set() -> bool:

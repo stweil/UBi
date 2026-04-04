@@ -4,12 +4,12 @@ import asyncio
 import os
 import re
 import time
-import mdformat
 from pathlib import Path
 from typing import Optional
 
 import backoff
 import click
+import mdformat
 import utils
 from config import CRAWL_DIR, CUSTOM_DOCS_DIR, DATA_DIR
 from langchain_core.language_models.chat_models import BaseChatModel

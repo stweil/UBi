@@ -8,11 +8,9 @@ from pathlib import Path
 from typing import Optional
 
 import numpy as np
-from dotenv import load_dotenv
-
 from config import ENV_PATH
+from dotenv import load_dotenv
 from utils import print_err, print_info
-
 
 # === .env Configuration ===
 load_dotenv(ENV_PATH)

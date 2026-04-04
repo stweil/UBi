@@ -5,10 +5,10 @@ Replaces external resources with local assets in Chainlit's HTML template.
 """
 
 import importlib.util
-import shutil
-from pathlib import Path
 import re
+import shutil
 import sys
+from pathlib import Path
 
 import chainlit as cl
 import utils

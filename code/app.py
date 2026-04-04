@@ -4,30 +4,22 @@ import asyncio
 import datetime
 import io
 import os
-import chainlit as cl
-from dotenv import load_dotenv
-from fastapi import Request, Response
 import time
 from typing import Optional
 
+import chainlit as cl
 # === UBi imports ===
-from audio_handler import (
-    generate_speech,
-    initialize_tts,
-    initialize_whisper_model,
-    is_audio_input_enabled,
-    is_audio_output_enabled,
-    transcribe_audio,
-)
+from audio_handler import (generate_speech, initialize_tts,
+                           initialize_whisper_model, is_audio_input_enabled,
+                           is_audio_output_enabled, transcribe_audio)
 from catalog_search import search_catalog
 from config import ENV_PATH
-from conversation_memory import (
-    MessageRole,
-    create_conversation_context,
-    session_memory,
-)
+from conversation_memory import (MessageRole, create_conversation_context,
+                                 session_memory)
 from custom_data_layer import CustomDataLayer
 from db import save_interaction
+from dotenv import load_dotenv
+from fastapi import Request, Response
 from free_seats import get_occupancy_data, make_plotly_figure
 from html_template_modifier import main as modify_html_template
 from llm_query_processing import route_and_augment_query
@@ -36,14 +28,8 @@ from prompts import BASE_SYSTEM_PROMPT
 from rss_reader import get_rss_items
 from session_stats import check_session_warnings, get_session_usage_message
 from translations import translate
-from utils import (
-    extract_openai_response_data,
-    print_openai_extracted_data,
-    clean_old_backup_dirs,
-    print_info,
-    print_err
-)
-
+from utils import (clean_old_backup_dirs, extract_openai_response_data,
+                   print_err, print_info, print_openai_extracted_data)
 
 # === .env Configuration ===
 load_dotenv(ENV_PATH)

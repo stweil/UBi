@@ -129,7 +129,7 @@ async def create_rag_chain(debug=False):
             # Check if configuration changed (chunk size, overlap, model)
             if file_index.config_changed(
                 CHUNK_SIZE, CHUNK_OVERLAP,
-                ollama_embedding_model if use_ollama else "openai_ada"
+                ollama_embedding_model if use_ollama else "text-embedding-ada-002"
             ):
                 if debug:
                     print("[yellow]⚠️  Configuration changed, full rebuild required[/yellow]")
@@ -220,21 +220,19 @@ async def create_rag_chain(debug=False):
             all_docs.append(Document(page_content=text_content, metadata=metadata))
             file_to_chunks[str(file.resolve())] = []
 
-        # Split all documents into chunks and generate unique IDs
+        # Split documents per file to track chunk ownership, then build vectorstore
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
         )
-        all_chunks = splitter.split_documents(all_docs)
-        chunk_ids = [str(uuid.uuid4()) for _ in all_chunks]
-
-        # Track which chunks belong to which file
-        chunk_idx = 0
+        all_chunks = []
+        chunk_ids = []
         for doc_idx, doc in enumerate(all_docs):
             file_path = str(files[doc_idx].resolve())
             doc_chunks = splitter.split_documents([doc])
-            num_chunks = len(doc_chunks)
-            file_to_chunks[file_path] = chunk_ids[chunk_idx:chunk_idx + num_chunks]
-            chunk_idx += num_chunks
+            ids = [str(uuid.uuid4()) for _ in doc_chunks]
+            all_chunks.extend(doc_chunks)
+            chunk_ids.extend(ids)
+            file_to_chunks[file_path] = ids
 
         vectorstore = Chroma.from_documents(
             all_chunks,
@@ -254,7 +252,7 @@ async def create_rag_chain(debug=False):
         file_index.update_config(
             CHUNK_SIZE,
             CHUNK_OVERLAP,
-            ollama_embedding_model if use_ollama else "openai_ada"
+            ollama_embedding_model if use_ollama else "text-embedding-ada-002"
         )
         file_index.save_index()
 

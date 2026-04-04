@@ -1,6 +1,7 @@
 import json
-import httpx
 from typing import Optional
+
+import httpx
 
 VUFIND_BASE = "https://disco.bib.uni-mannheim.de/vufind"  # Adjust to your VuFind URL
 

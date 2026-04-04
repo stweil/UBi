@@ -8,14 +8,8 @@ from chainlit import PersistedUser, User
 from chainlit.data import BaseDataLayer
 from chainlit.element import ElementDict
 from chainlit.step import StepDict
-from chainlit.types import (
-    Feedback,
-    PageInfo,
-    PaginatedResponse,
-    Pagination,
-    ThreadDict,
-    ThreadFilter,
-)
+from chainlit.types import (Feedback, PageInfo, PaginatedResponse, Pagination,
+                            ThreadDict, ThreadFilter)
 from db import save_interaction
 
 

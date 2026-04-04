@@ -1,7 +1,7 @@
 import asyncio
 import os
-from pathlib import Path
 from datetime import date
+from pathlib import Path
 
 import utils
 from config import DATA_DIR, ENV_PATH

@@ -113,7 +113,9 @@ def should_recrawl_url(url: str, sitemap_lastmod: str | None, crawl_dir: str) ->
 
     # Parse sitemap lastmod timestamp
     try:
-        sitemap_dt = datetime.fromisoformat(sitemap_lastmod.replace("Z", "+00:00"))
+        sitemap_dt = datetime.fromisoformat(
+            sitemap_lastmod[:-1] + "+00:00" if sitemap_lastmod.endswith("Z") else sitemap_lastmod
+        )
     except (ValueError, AttributeError):
         # If we can't parse the timestamp, crawl to be safe
         return True
@@ -696,12 +698,13 @@ def process_urls(
         url_data = {url: None for url in urls}
         url_list = list(urls)
 
+    crawl_directory = str(output_dir or CRAWL_DIR)
     changed_files = []
     skipped_count = 0
     for url in tqdm(url_list, desc="Crawling URLs", disable=quiet):
         # Check if we should skip this URL based on lastmod
         if not force_recrawl:
-            if not should_recrawl_url(url, url_data.get(url), str(output_dir or CRAWL_DIR)):
+            if not should_recrawl_url(url, url_data.get(url), crawl_directory):
                 skipped_count += 1
                 continue
 

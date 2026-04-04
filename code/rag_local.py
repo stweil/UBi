@@ -97,6 +97,22 @@ async def create_rag_chain(debug=False):
             if frontmatter_match:
                 try:
                     metadata = yaml.safe_load(frontmatter_match.group(1)) or {}
+
+                    # Sanitize metadata for ChromaDB compatibility.
+                    # ChromaDB requires list values to have all elements of the same type.
+                    sanitized_metadata = {}
+                    for key, value in metadata.items():
+                        if isinstance(value, list):
+                            # Convert all list elements to strings to ensure type uniformity
+                            sanitized_metadata[key] = [str(item) for item in value]
+                        elif isinstance(value, (str, int, float, bool)):
+                            sanitized_metadata[key] = value
+                        elif value is None:
+                            continue
+                        else:
+                            sanitized_metadata[key] = str(value)
+                    metadata = sanitized_metadata
+
                 except yaml.YAMLError:
                     logging.warning("Failed to parse YAML frontmatter in %s", file)
                     metadata = {}

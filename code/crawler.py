@@ -13,29 +13,9 @@ import click
 import requests
 import utils
 from bs4 import BeautifulSoup, Tag
-from config import CRAWL_DIR, DATA_DIR, SITEMAP_URL, URLS_TO_CRAWL
+from config import CRAWL_DIR, DATA_DIR, SITEMAP_URL, SITEMAP_URL_FILTERS, URLS_TO_CRAWL
 from markdown_processing import write_markdown_from_url
 from tqdm import tqdm
-
-
-# Default URL filters for sitemap crawling
-SITEMAP_URL_FILTERS = [
-    "twitter",
-    "youtube",
-    "google",
-    "facebook",
-    "instagram",
-    "primo",
-    "absolventum",
-    "portal2",
-    "blog",
-    "auskunft-und-beratung",
-    "beschaeftigte-von-a-bis-z",
-    "aktuelles/events",
-    "ausstellungen-und-veranstaltungen",
-    "anmeldung-fuer-schulen",
-    "fuehrungen",
-]
 
 
 # === Crawler Functions ===
@@ -851,12 +831,20 @@ def process_urls(
     help="Output directory for crawled markdown files (overrides CRAWL_DIR)",
 )
 @click.option(
+    "--filter",
+    "-f",
+    "url_filters",
+    multiple=True,
+    default=None,
+    help="URL filter keyword to exclude from crawling (can be used multiple times). If specified, overrides default filters. Use a random string to effectively disable filtering.",
+)
+@click.option(
     "--force",
     is_flag=True,
     default=False,
     help="Force re-crawl all URLs, ignoring lastmod timestamps from sitemap.",
 )
-def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tuple[str, ...], output_dir: str, force: bool) -> Optional[list[str] | list[Path]]:
+def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tuple[str, ...], output_dir: str, url_filters: tuple, force: bool) -> Optional[list[str] | list[Path]]:
     """
     Main crawling function.
     """
@@ -875,6 +863,8 @@ def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tu
 
     # Determine URLs to crawl
     # Priority: 1. Command-line URLs, 2. Command-line sitemap, 3. URL file, 4. Default sitemap
+    # Determine which filters to use
+    url_filters = list(url_filters) if url_filters else SITEMAP_URL_FILTERS
     if urls:
         # Use URLs provided directly via command line
         utils.print_info(f"[bold]Using {len(urls)} URL(s) provided via command line.")
@@ -885,7 +875,7 @@ def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tu
         urls_to_crawl = asyncio.run(
             crawl_urls(
                 sitemap_url=sitemap_url,
-                filters=SITEMAP_URL_FILTERS,
+                filters=url_filters,
                 save_to_disk=True,
                 url_filename=str(URLS_TO_CRAWL),
             )
@@ -903,7 +893,7 @@ def main(quiet: bool, write_snapshot: bool, sitemap_url: Optional[str], urls: tu
             urls_to_crawl = asyncio.run(
                 crawl_urls(
                     sitemap_url=sitemap_url,
-                    filters=SITEMAP_URL_FILTERS,
+                    filters=url_filters,
                     save_to_disk=True,
                     url_filename=str(URLS_TO_CRAWL),
                 )

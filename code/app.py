@@ -40,6 +40,11 @@ _quiet_mode = os.getenv("QUIET_MODE", "False").lower() == "true"
 _enable_audio_input = is_audio_input_enabled()
 _enable_audio_output = is_audio_output_enabled()
 
+# === Override Chainlit config with .env values ===
+cl.config.features.audio_input = _enable_audio_input
+cl.config.features.audio_output = _enable_audio_output
+cl.config.features.audio.enabled = _enable_audio_input or _enable_audio_output
+
 
 # === Conditional Imports for OpenAI vectorstore / RAG logic ===
 if USE_OPENAI_VECTORSTORE:

@@ -17,6 +17,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from prompts import BASE_SYSTEM_PROMPT
 from rich import print
+from tqdm import tqdm
 from vectorstore_incremental import FileIndexManager
 
 
@@ -159,7 +160,9 @@ async def create_rag_chain(debug=False):
 
                 # Process new/modified files
                 if new_or_modified:
-                    for file in new_or_modified:
+                    if debug:
+                        print(f"[cyan]📝 Processing {len(new_or_modified)} modified files...[/cyan]")
+                    for file in tqdm(new_or_modified, desc="Updating files", disable=not debug):
                         # Delete old chunks if file was modified
                         path_str = str(file.resolve())
                         old_chunk_ids = file_index.get_chunk_ids_for_file(path_str)
@@ -191,9 +194,6 @@ async def create_rag_chain(debug=False):
                         # Update file index
                         file_index.update_file_entry(file, chunk_ids)
 
-                        if debug:
-                            print(f"[green]✅ Updated: {file.name} ({len(chunks)} chunks)[/green]")
-
                     # Save updated index
                     file_index.save_index()
 
@@ -209,10 +209,14 @@ async def create_rag_chain(debug=False):
     else:
         # First time build - create vectorstore from scratch
         files = sorted(DATA_DIR.glob("*.md"))
+
+        if debug:
+            print(f"[cyan]📖 Reading and parsing {len(files)} files...[/cyan]")
+
         all_docs = []
         file_to_chunks = {}
 
-        for file in files:
+        for file in tqdm(files, desc="Reading files", disable=not debug):
             with open(file, 'r', encoding='utf-8') as f:
                 content = f.read()
 
@@ -221,18 +225,25 @@ async def create_rag_chain(debug=False):
             file_to_chunks[str(file.resolve())] = []
 
         # Split documents per file to track chunk ownership, then build vectorstore
+        if debug:
+            print(f"[cyan]✂️  Splitting into chunks...[/cyan]")
+
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
         )
         all_chunks = []
         chunk_ids = []
-        for doc_idx, doc in enumerate(all_docs):
+        for doc_idx, doc in enumerate(tqdm(all_docs, desc="Chunking documents", disable=not debug)):
             file_path = str(files[doc_idx].resolve())
             doc_chunks = splitter.split_documents([doc])
             ids = [str(uuid.uuid4()) for _ in doc_chunks]
             all_chunks.extend(doc_chunks)
             chunk_ids.extend(ids)
             file_to_chunks[file_path] = ids
+
+        if debug:
+            print(f"[cyan]🔢 Generated {len(all_chunks)} chunks from {len(files)} files[/cyan]")
+            print(f"[cyan]🧮 Creating embeddings... (this may take several minutes)[/cyan]")
 
         vectorstore = Chroma.from_documents(
             all_chunks,
@@ -244,9 +255,12 @@ async def create_rag_chain(debug=False):
             ),
         )
 
+        if debug:
+            print(f"[cyan]💾 Saving file index...[/cyan]")
+
         # Create and save file index
         file_index = FileIndexManager(persist_path)
-        for file in files:
+        for file in tqdm(files, desc="Building index", disable=not debug):
             path_str = str(file.resolve())
             file_index.update_file_entry(file, file_to_chunks[path_str])
         file_index.update_config(

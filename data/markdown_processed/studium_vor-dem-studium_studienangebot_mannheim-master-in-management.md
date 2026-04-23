@@ -1,7 +1,7 @@
 ---
 title: "Mannheim Master in Management (MMM): Programmübersicht und Zulassungsvoraussetzungen"
-source_url_de: (Nicht explizit angegeben, Hauptseite: https://www.bwl.uni-mannheim.de/studium/master/mmm/)
-source_url_en: https://www.uni-mannheim.de/en/academics/before-your-studies/programs/mannheim-master-in-management/
+source_url_de: '(Nicht explizit angegeben, Hauptseite: https://www.bwl.uni-mannheim.de/studium/master/mmm/)'
+source_url_en: 'https://www.uni-mannheim.de/en/academics/before-your-studies/programs/mannheim-master-in-management/'
 category: Services
 tags: ['MMM', 'Master', 'BWL', 'Mannheim', 'International', 'Flexibilität', 'Karriere', 'Studiengang']
 language: de/en

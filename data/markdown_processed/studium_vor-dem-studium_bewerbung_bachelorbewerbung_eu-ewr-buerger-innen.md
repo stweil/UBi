@@ -1,7 +1,7 @@
 ---
 title: Bewerbung Bachelor Mannheim für EU/EEA Bürger ohne deutsche Hochschulzugangsberechtigung
-source_url_de: (Implizit: Bewerbungsprozess)
-source_url_en: https://www.uni-mannheim.de/en/academics/before-your-studies/applying/bachelors-program/citizens-of-the-eu-eea/
+source_url_de: '(Implizit: Bewerbungsprozess)'
+source_url_en: 'https://www.uni-mannheim.de/en/academics/before-your-studies/applying/bachelors-program/citizens-of-the-eu-eea/'
 category: Benutzung
 tags: ['Bewerbung', 'Bachelor', 'EU', 'Hochschulzugang', 'Sprachnachweis', 'International', 'Studienstart']
 language: de
